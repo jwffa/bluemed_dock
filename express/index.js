@@ -23,11 +23,14 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api', scheduleRoutes);
 
-app.use(express.static(path.join(__dirname, '../bluemed/build')));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '../bluemed/dist')));
 
 // for all other routes, serve React's index.html (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../bluemed/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../bluemed/dist/index.html'));
 });
 
 mongoose.connect(process.env.MONGO_URI)
