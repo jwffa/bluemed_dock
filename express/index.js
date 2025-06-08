@@ -54,8 +54,9 @@ mongoose.connect(process.env.MONGO_URI)
       }
     }, 2000);
     
-    app.listen(3000, () => {
+    app.listen(3000, '0.0.0.0', () => {
       console.log('server running on http://localhost:3000');
+      console.log('server running on http://0.0.0.0:3000');
       setTimeout(async () => {
         console.log('ხელით იწყება განრიგის განახლება...');
         try {
