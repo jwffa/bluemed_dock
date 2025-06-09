@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./express/.env
+    volumes:
+      - ./express:/app
+      - ./bluemed:/frontend
+    restart: always
